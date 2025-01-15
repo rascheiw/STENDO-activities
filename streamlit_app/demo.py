@@ -166,7 +166,8 @@ def statistiques_par_clients(df):
     target_activity = df[df['full_name.1'] == str(user)]
     if not target_activity.empty:
         current_date = datetime.date.today()
-        rank = target_activity['rank_activity_per_day_since_acquisition'].iloc[0]
+        rank = target_activity['rank_activity_since_acquisition'].iloc[0]
+        rank_per_day = target_activity['rank_activity_per_day_since_acquisition'].iloc[0]
         counts = target_activity['counts'].iloc[0]
         activity_per_day = target_activity['activity_per_day_since_acquisition'].iloc[0]
         first_activity = target_activity['first_activity'].iloc[0]
@@ -239,7 +240,9 @@ def statistiques_par_clients(df):
 
         st.markdown("**__Stats depuis la première utilisation__**")
         st.write(f"Nombres de séances: {counts}")
-        st.write(f"Nombres moyen de séances par jour: {activity_per_day}")
         st.write(f"Classement: {rank}")
+        st.write(f"Nombres moyen de séances par jour: {activity_per_day}")
+        st.write(f"Classement: {rank_per_day}")
+
     else:
         st.write(f"{user} n'existe pas dans la base de données")
