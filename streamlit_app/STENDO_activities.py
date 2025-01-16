@@ -87,18 +87,22 @@ st.sidebar.markdown("---")
 
 st.write("Upload the file")
 uploaded_file = st.file_uploader("Choose a file")
-sorted_activity_europe_50 = process_activity_data(uploaded_file)
+if uploaded_file is not None:
+    sorted_activity_europe_50 = process_activity_data(uploaded_file)
+else:
+    st.write("Please upload a file to proceed.")
 
 liste_menu = ['Liste des clients non rentables', 
               'Classement des 30 premiers clients européens en fonction du nombre moyen de séances par jour',
               'Classement des 30 premiers clients européens en fonction du nombre de séances', 
               'Statistiques par clients']
 menu = st.sidebar.selectbox('Select the project presentation:', liste_menu)
-if menu == liste_menu[0]:
-    Liste_des_clients_non_rentables(sorted_activity_europe_50)
-elif menu == liste_menu[1]:
-    classement_nombre_moyen_par_jour(sorted_activity_europe_50)
-elif menu == liste_menu[2]:
-    classement_nombre_par_jour(sorted_activity_europe_50)
-else:
-    statistiques_par_clients(sorted_activity_europe_50)
+if uploaded_file is not None:
+    if menu == liste_menu[0]:
+        Liste_des_clients_non_rentables(sorted_activity_europe_50)
+    elif menu == liste_menu[1]:
+        classement_nombre_moyen_par_jour(sorted_activity_europe_50)
+    elif menu == liste_menu[2]:
+        classement_nombre_par_jour(sorted_activity_europe_50)
+    else:
+        statistiques_par_clients(sorted_activity_europe_50)
