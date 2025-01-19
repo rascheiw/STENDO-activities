@@ -18,7 +18,6 @@ import streamlit as st
 # Title and presentation
 st.sidebar.title("Statistiques des activités des consoles V4")
 st.image('./figures/Logo.png')
-st.sidebar.markdown('[Activités recénsées sur Axelor](https://axelor.stendo.net/#/ds/stendo-stendo-activity-action/list/1) ')
 st.sidebar.markdown("---")
 
 # Streamlit function to upload a file
