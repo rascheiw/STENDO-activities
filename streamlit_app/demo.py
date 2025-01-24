@@ -7,29 +7,36 @@ def Liste_des_clients_non_rentables(df):
     days = st.selectbox("Nombre de jours", [7, 14, 30, 90, 365, 'depuis la première utilisation'])
     if days == 7:
         st.write(f"{len( df[df['activity_per_day_7_days'] < 1.25][['full_name.1', 'activity_per_day_7_days']].sort_values(by=['activity_per_day_7_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_7_days': 'Nombre moyen séance par jours sur les 7 derniers jours'}))} clients sur {len(df[df['number_days'] > 7])} ne sont pas rentables sur les 7 derniers jours")
-        st.dataframe( df[df['activity_per_day_7_days'] < 1.25][['full_name.1', 'activity_per_day_7_days']].sort_values(by=['activity_per_day_7_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_7_days': 'Nombre moyen séance par jours sur les 7 derniers jours'}).style.format({"Nombre moyen séance par jours sur les 7 derniers jours": "{:.2f}"}).hide_index())
+        styled_df = df[df['activity_per_day_7_days'] < 1.25][['full_name.1', 'activity_per_day_7_days']].sort_values(by=['activity_per_day_7_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_7_days': 'Nombre moyen séance par jours sur les 7 derniers jours'})
+        st.dataframe(styled_df.style.format({"Nombre moyen séance par jours sur les 7 derniers jours": "{:.2f}"}), hide_index=True)
     elif days == 14:
         st.write(f"{len( df[df['activity_per_day_14_days'] < 1.25][['full_name.1', 'activity_per_day_14_days']].sort_values(by=['activity_per_day_14_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_14_days': 'Nombre moyen séance par jours sur les 14 derniers jours'}))} clients sur {len(df[df['number_days'] > 14])} ne sont pas rentables sur les 14 derniers jours")
-        st.dataframe( df[df['activity_per_day_14_days'] < 1.25][['full_name.1', 'activity_per_day_14_days']].sort_values(by=['activity_per_day_14_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_14_days': 'Nombre moyen séance par jours sur les 14 derniers jours'}).style.format({"Nombre moyen séance par jours sur les 14 derniers jours": "{:.2f}"}).hide_index())
+        styled_df = df[df['activity_per_day_14_days'] < 1.25][['full_name.1', 'activity_per_day_14_days']].sort_values(by=['activity_per_day_14_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_14_days': 'Nombre moyen séance par jours sur les 14 derniers jours'})
+        st.dataframe(styled_df.style.format({"Nombre moyen séance par jours sur les 14 derniers jours": "{:.2f}"}), hide_index=True)
     elif days == 30:
         st.write(f"{len( df[df['activity_per_day_30_days'] < 1.25][['full_name.1', 'activity_per_day_30_days']].sort_values(by=['activity_per_day_30_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_30_days': 'Nombre moyen séance par jours sur les 30 derniers jours'}))} clients sur {len(df[df['number_days'] > 30])} ne sont pas rentables sur les 30 derniers jours")
-        st.dataframe( df[df['activity_per_day_30_days'] < 1.25][['full_name.1', 'activity_per_day_30_days']].sort_values(by=['activity_per_day_30_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_30_days': 'Nombre moyen séance par jours sur les 30 derniers jours'}).style.format({"Nombre moyen séance par jours sur les 30 derniers jours": "{:.2f}"}).hide_index())
+        styled_df = df[df['activity_per_day_30_days'] < 1.25][['full_name.1', 'activity_per_day_30_days']].sort_values(by=['activity_per_day_30_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_30_days': 'Nombre moyen séance par jours sur les 30 derniers jours'})
+        st.dataframe(styled_df.style.format({"Nombre moyen séance par jours sur les 30 derniers jours": "{:.2f}"}), hide_index=True)
     elif days == 90:
         st.write(f"{len( df[df['activity_per_day_90_days'] < 1.25][['full_name.1', 'activity_per_day_90_days']].sort_values(by=['activity_per_day_90_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_90_days': 'Nombre moyen séance par jours sur les 90 derniers jours'}))} clients sur {len(df[df['number_days'] > 90])} ne sont pas rentables sur les 90 derniers jours")
-        st.dataframe( df[df['activity_per_day_90_days'] < 1.25][['full_name.1', 'activity_per_day_90_days']].sort_values(by=['activity_per_day_90_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_90_days': 'Nombre moyen séance par jours sur les 90 derniers jours'}).style.format({"Nombre moyen séance par jours sur les 90 derniers jours": "{:.2f}"}).hide_index())
+        styled_df = df[df['activity_per_day_90_days'] < 1.25][['full_name.1', 'activity_per_day_90_days']].sort_values(by=['activity_per_day_90_days'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_90_days': 'Nombre moyen séance par jours sur les 90 derniers jours'})
+        st.dataframe(styled_df.style.format({"Nombre moyen séance par jours sur les 90 derniers jours": "{:.2f}"}), hide_index=True)
     elif days == 365:
         st.write(f"{len( df[df['activity_per_day_year'] < 1.25][['full_name.1', 'activity_per_day_year']].sort_values(by=['activity_per_day_year'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_year': 'Nombre moyen séance par jours sur 1 an'}))} clients sur {len(df[df['number_days'] > 365])} ne sont pas rentables sur 1 an")
-        st.dataframe( df[df['activity_per_day_year'] < 1.25][['full_name.1', 'activity_per_day_year']].sort_values(by=['activity_per_day_year'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_year': 'Nombre moyen séance par jours sur 1 an'}).style.format({"Nombre moyen séance par jours sur 1 an": "{:.2f}"}).hide_index())
+        styled_df = df[df['activity_per_day_year'] < 1.25][['full_name.1', 'activity_per_day_year']].sort_values(by=['activity_per_day_year'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_year': 'Nombre moyen séance par jours sur 1 an'})
+        st.dataframe(styled_df.style.format({"Nombre moyen séance par jours sur 1 an": "{:.2f}"}), hide_index=True)
     elif days == 'depuis la première utilisation':
         st.write(f"{len( df[df['activity_per_day_since_acquisition'] < 0.87][['full_name.1', 'activity_per_day_since_acquisition']].sort_values(by=['activity_per_day_since_acquisition'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_since_acquisition': 'Nombre moyen séance par jours depuis la première utilisation'}))} clients sur {len(df)} ne sont pas rentables")
-        st.dataframe( df[df['activity_per_day_since_acquisition'] < 0.87][['full_name.1', 'activity_per_day_since_acquisition']].sort_values(by=['activity_per_day_since_acquisition'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_since_acquisition': 'Nombre moyen séance par jours depuis la première utilisation'}).style.format({"Nombre moyen séance par jours depuis la première utilisation": "{:.2f}"}).hide_index())
+        styled_df = df[df['activity_per_day_since_acquisition'] < 0.87][['full_name.1', 'activity_per_day_since_acquisition']].sort_values(by=['activity_per_day_since_acquisition'], ascending=False).rename(columns={'full_name.1' : 'Nom du client','activity_per_day_since_acquisition': 'Nombre moyen séance par jours depuis la première utilisation'})
+        st.dataframe(styled_df.style.format({"Nombre moyen séance par jours depuis la première utilisation": "{:.2f}"}), hide_index=True)
 
 def classement_nombre_moyen_par_jour(df):
     days = st.selectbox("Nombre de jours", [7, 14, 30, 90, 365, 'depuis la première utilisation'])
     if days == 7:
         display_30_best_clients_activity_per_days_7_days = df[df['number_days'] > 7][['full_name.1', 'activity_per_day_7_days', 'rank_activity_per_day_7_days']].sort_values(by=['activity_per_day_7_days'], ascending=False)
         display_30_best_clients_activity_per_days_7_days = display_30_best_clients_activity_per_days_7_days.rename(columns={'full_name.1' : 'Nom du client', 'activity_per_day_7_days': 'Nombre moyen séances par jours sur les 7 derniers jours', 'rank_activity_per_day_7_days' : 'Classement en fonction de l\'activité sur les 7 derniers jours'})
-        st.dataframe(display_30_best_clients_activity_per_days_7_days.head(30).style.format({"Nombre moyen séances par jours sur les 7 derniers jours": "{:.1f}"}).hide(axis='index'))
+        styled_df = display_30_best_clients_activity_per_days_7_days.head(30).style.format({"Nombre moyen séances par jours sur les 7 derniers jours": "{:.1f}"})
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_per_days_7_days.head(30)['Nom du client'], display_30_best_clients_activity_per_days_7_days.head(30)['Nombre moyen séances par jours sur les 7 derniers jours'], alpha=0.7)
         plt.xlabel('Nom du client')
@@ -40,7 +47,8 @@ def classement_nombre_moyen_par_jour(df):
     elif days == 14:
         display_30_best_clients_activity_per_days_14_days = df[df['number_days'] > 14][['full_name.1', 'activity_per_day_14_days', 'rank_activity_per_day_14_days']].sort_values(by=['activity_per_day_14_days'], ascending=False)
         display_30_best_clients_activity_per_days_14_days = display_30_best_clients_activity_per_days_14_days.rename(columns={'full_name.1' : 'Nom du client','activity_per_day_14_days': 'Nombre moyen séances par jours sur les 14 derniers jours','rank_activity_per_day_14_days' : 'Classement en fonction de l\'activité sur les 14 derniers jours'})
-        st.dataframe(display_30_best_clients_activity_per_days_14_days.head(30).style.format({"Nombre moyen séances par jours sur les 14 derniers jours": "{:.1f}"}).hide(axis='index'))
+        styled_df = display_30_best_clients_activity_per_days_14_days.head(30).style.format({"Nombre moyen séances par jours sur les 14 derniers jours": "{:.1f}"})
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_per_days_14_days.head(30)['Nom du client'], display_30_best_clients_activity_per_days_14_days.head(30)['Nombre moyen séances par jours sur les 14 derniers jours'],  alpha=0.7)
         plt.xlabel('Nom du client')
@@ -51,7 +59,8 @@ def classement_nombre_moyen_par_jour(df):
     elif days == 30:
         display_30_best_clients_activity_per_days_30_days = df[df['number_days'] > 30][['full_name.1', 'activity_per_day_30_days', 'rank_activity_per_day_30_days']].sort_values(by=['activity_per_day_30_days'], ascending=False)
         display_30_best_clients_activity_per_days_30_days = display_30_best_clients_activity_per_days_30_days.rename(columns={'full_name.1' : 'Nom du client','activity_per_day_30_days': 'Nombre moyen séances par jours sur les 30 derniers jours', 'rank_activity_per_day_30_days' : 'Classement en fonction de l\'activité sur les 30 derniers jours'})
-        st.dataframe(display_30_best_clients_activity_per_days_30_days.head(30).style.format({"Nombre moyen séances par jours sur les 30 derniers jours": "{:.1f}"}).hide(axis='index'))
+        styled_df = display_30_best_clients_activity_per_days_30_days.head(30).style.format({"Nombre moyen séances par jours sur les 30 derniers jours": "{:.1f}"})
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_per_days_30_days.head(30)['Nom du client'], display_30_best_clients_activity_per_days_30_days.head(30)['Nombre moyen séances par jours sur les 30 derniers jours'],  alpha=0.7)
         plt.xlabel('Nom du client')
@@ -62,7 +71,8 @@ def classement_nombre_moyen_par_jour(df):
     elif days == 90:
         display_30_best_clients_activity_per_days_90_days = df[df['number_days'] > 90][['full_name.1', 'activity_per_day_90_days', 'rank_activity_per_day_90_days']].sort_values(by=['activity_per_day_90_days'], ascending=False)
         display_30_best_clients_activity_per_days_90_days = display_30_best_clients_activity_per_days_90_days.rename(columns={'full_name.1' : 'Nom du client', 'activity_per_day_90_days': 'Nombre moyen séances par jours sur les 90 derniers jours', 'rank_activity_per_day_90_days' : 'Classement en fonction de l\'activité sur les 90 derniers jours'})
-        st.dataframe(display_30_best_clients_activity_per_days_90_days.head(30).style.format({"Nombre moyen séances par jours sur les 90 derniers jours": "{:.1f}"}).hide(axis='index'))
+        styled_df = display_30_best_clients_activity_per_days_90_days.head(30).style.format({"Nombre moyen séances par jours sur les 90 derniers jours": "{:.1f}"})
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_per_days_90_days.head(30)['Nom du client'], display_30_best_clients_activity_per_days_90_days.head(30)['Nombre moyen séances par jours sur les 90 derniers jours'],  alpha=0.7)
         plt.xlabel('Nom du client')
@@ -73,7 +83,8 @@ def classement_nombre_moyen_par_jour(df):
     elif days == 365:
         display_30_best_clients_activity_per_days_year = df[df['number_days'] > 365][['full_name.1', 'activity_per_day_year', 'rank_activity_per_day_year']].sort_values(by=['activity_per_day_year'], ascending=False)
         display_30_best_clients_activity_per_days_year = display_30_best_clients_activity_per_days_year.rename(columns={'full_name.1' : 'Nom du client', 'activity_per_day_year': 'Nombre moyen séances par jours sur 1 an', 'rank_activity_per_day_year' : 'Classement en fonction de l\'activité sur 1 an'})
-        st.dataframe(display_30_best_clients_activity_per_days_year.head(30).style.format({"Nombre moyen séances par jours sur 1 an": "{:.1f}"}).hide(axis='index'))
+        styled_df = display_30_best_clients_activity_per_days_year.head(30).style.format({"Nombre moyen séances par jours sur 1 an": "{:.1f}"})
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_per_days_year.head(30)['Nom du client'], display_30_best_clients_activity_per_days_year.head(30)['Nombre moyen séances par jours sur 1 an'],  alpha=0.7)
         plt.xlabel('Nom du client')
@@ -84,7 +95,8 @@ def classement_nombre_moyen_par_jour(df):
     elif days == 'depuis la première utilisation':
         display_30_best_clients_activity_per_days_entire_period = df[['full_name.1', 'activity_per_day_since_acquisition', 'rank_activity_per_day_since_acquisition']].sort_values(by=['activity_per_day_since_acquisition'], ascending=False)
         display_30_best_clients_activity_per_days_entire_period = display_30_best_clients_activity_per_days_entire_period.rename(columns={'full_name.1' : 'Nom du client', 'activity_per_day_since_acquisition': 'Nombre moyen séance par jours depuis la première utilisation', 'rank_activity_per_day_since_acquisition' : 'Classement en fonction de l\'activité depuis la première utilisation'})
-        st.dataframe(display_30_best_clients_activity_per_days_entire_period.head(30).style.format({"Nombre moyen séance par jours depuis acquisition": "{:.1f}"}).hide(axis='index'))
+        styled_df = display_30_best_clients_activity_per_days_entire_period.head(30).style.format({"Nombre moyen séance par jours depuis acquisition": "{:.1f}"})
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_per_days_entire_period.head(30)['Nom du client'], display_30_best_clients_activity_per_days_entire_period.head(30)['Nombre moyen séance par jours depuis la première utilisation'],  alpha=0.7)
         plt.xlabel('Nom du client')
@@ -98,7 +110,8 @@ def classement_nombre_par_jour(df):
     if days == 7:
         display_30_best_clients_activity_7_days = df[df['number_days'] > 7][['full_name.1', 'activity_last_7_days', 'rank_activity_7_days']].sort_values(by=['activity_last_7_days'], ascending=False)
         display_30_best_clients_activity_7_days = display_30_best_clients_activity_7_days.rename(columns={'full_name.1' : 'Nom du client', 'activity_last_7_days': 'Nombre de séances sur les 7 derniers jours', 'rank_activity_7_days' : 'Classement en fonction de l\'activité sur les 7 derniers jours'})
-        st.dataframe(display_30_best_clients_activity_7_days.head(30).style.hide(axis='index'))
+        styled_df = display_30_best_clients_activity_7_days.head(30)
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_7_days.head(30)['Nom du client'], display_30_best_clients_activity_7_days.head(30)['Nombre de séances sur les 7 derniers jours'], alpha=0.7)
         plt.xlabel('Nom du client')
@@ -109,7 +122,8 @@ def classement_nombre_par_jour(df):
     elif days == 14:
         display_30_best_clients_activity_14_days = df[df['number_days'] > 14][['full_name.1', 'activity_last_14_days', 'rank_activity_14_days']].sort_values(by=['activity_last_14_days'], ascending=False)
         display_30_best_clients_activity_14_days = display_30_best_clients_activity_14_days.rename(columns={'full_name.1' : 'Nom du client', 'activity_last_14_days': 'Nombre de séances sur les 14 derniers jours', 'rank_activity_14_days' : 'Classement en fonction de l\'activité sur les 14 derniers jours'})
-        st.dataframe(display_30_best_clients_activity_14_days.head(30).style.hide(axis='index'))
+        styled_df = display_30_best_clients_activity_14_days.head(30)
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_14_days.head(30)['Nom du client'], display_30_best_clients_activity_14_days.head(30)['Nombre de séances sur les 14 derniers jours'], alpha=0.7)
         plt.xlabel('Nom du client')
@@ -120,7 +134,8 @@ def classement_nombre_par_jour(df):
     elif days == 30:
         display_30_best_clients_activity_30_days = df[df['number_days'] > 30][['full_name.1', 'activity_last_30_days', 'rank_activity_30_days']].sort_values(by=['activity_last_30_days'], ascending=False)
         display_30_best_clients_activity_30_days = display_30_best_clients_activity_30_days.rename(columns={'full_name.1' : 'Nom du client', 'activity_last_30_days': 'Nombre de séances sur les 30 derniers jours', 'rank_activity_30_days' : 'Classement en fonction de l\'activité sur les 30 derniers jours'})
-        st.dataframe(display_30_best_clients_activity_30_days.head(30).style.hide(axis='index'))
+        styled_df = display_30_best_clients_activity_30_days.head(30)
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_30_days.head(30)['Nom du client'], display_30_best_clients_activity_30_days.head(30)['Nombre de séances sur les 30 derniers jours'], alpha=0.7)
         plt.xlabel('Nom du client')
@@ -131,7 +146,8 @@ def classement_nombre_par_jour(df):
     elif days == 90:
         display_30_best_clients_activity_90_days = df[df['number_days'] > 90][['full_name.1', 'activity_last_90_days', 'rank_activity_90_days']].sort_values(by=['activity_last_90_days'], ascending=False)
         display_30_best_clients_activity_90_days = display_30_best_clients_activity_90_days.rename(columns={'full_name.1' : 'Nom du client', 'activity_last_90_days': 'Nombre de séances sur les 90 derniers jours', 'rank_activity_90_days' : 'Classement en fonction de l\'activité sur les 90 derniers jours'})
-        st.dataframe(display_30_best_clients_activity_90_days.head(30).style.hide(axis='index'))
+        styled_df = display_30_best_clients_activity_90_days.head(30)
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_90_days.head(30)['Nom du client'], display_30_best_clients_activity_90_days.head(30)['Nombre de séances sur les 90 derniers jours'], alpha=0.7)
         plt.xlabel('Nom du client')
@@ -142,17 +158,20 @@ def classement_nombre_par_jour(df):
     elif days == 365:
         display_30_best_clients_activity_year = df[df['number_days'] > 365][['full_name.1', 'activity_last_365_days', 'rank_activity_year']].sort_values(by=['activity_last_365_days'], ascending=False)
         display_30_best_clients_activity_year = display_30_best_clients_activity_year.rename(columns={'full_name.1' : 'Nom du client', 'activity_last_365_days': 'Nombre de séances sur 1 an', 'rank_activity_year' : 'Classement en fonction de l\'activité sur 1 an'})
-        st.dataframe(display_30_best_clients_activity_year.head(30).style.hide(axis='index'))
+        styled_df = display_30_best_clients_activity_year.head(30)
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_year.head(30)['Nom du client'], display_30_best_clients_activity_year.head(30)['Nombre de séances sur 1 an'], alpha=0.7)
         plt.xlabel('Nom du client')
         plt.ylabel('Nombres de séances par jours')
         plt.title('Classement des 30 clients européens avec le plus de séances sur 1 an')
         plt.xticks(rotation=90)
+        st.pyplot(plt)
     elif days == 'depuis la première utilisation':
         display_30_best_clients_activity_per_days_entire_period = df[['full_name.1', 'counts', 'rank_activity_since_acquisition']].sort_values(by=['counts'], ascending=False)
         display_30_best_clients_activity_per_days_entire_period = display_30_best_clients_activity_per_days_entire_period.rename(columns={'full_name.1' : 'Nom du client', 'counts': 'Nombre de séances depuis la première utilisation', 'rank_activity_since_acquisition' : 'Classement en fonction de l\'activité depuis la première utilisation'})
-        st.dataframe(display_30_best_clients_activity_per_days_entire_period.head(30).style.format({"Nombre de séances depuis la première utilisation": "{:.1f}"}).hide(axis='index'))
+        styled_df = display_30_best_clients_activity_per_days_entire_period.head(30).style.format({"Nombre de séances depuis la première utilisation": "{:.1f}"})
+        st.dataframe(styled_df, hide_index=True)
         plt.figure(figsize=(10, 6))
         plt.scatter(display_30_best_clients_activity_per_days_entire_period.head(30)['Nom du client'], display_30_best_clients_activity_per_days_entire_period.head(30)['Nombre de séances depuis la première utilisation'],  alpha=0.7)
         plt.xlabel('Nom du client')
